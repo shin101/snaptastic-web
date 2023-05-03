@@ -6,16 +6,8 @@ import { useState } from "react";
 import { useReactiveVar } from "@apollo/client";
 import { darkModeVar, isLoggedInVar } from "./apollo";
 import { ThemeProvider } from "styled-components";
+import { GlobalStyles, darkTheme, lightTheme } from "./styles";
 
-const lightTheme = {
-  fontColor: "#2c2c2c",
-  bgColor: "lightgray",
-};
-
-const darkTheme = {
-  fontColor: "white",
-  bgColor: "#2c2c2c",
-};
 
 function App() {
   // use header (apollo useReactiveVar) instead of passing down isLoggedIn props per page
@@ -25,6 +17,7 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+        <GlobalStyles />
         <BrowserRouter>
           <Routes>
               <Route exact path="/" /> 
