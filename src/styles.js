@@ -3,17 +3,20 @@ import reset from "styled-reset";
 
 export const lightTheme = {
   fontColor: "#2c2c2c",
-  bgColor: "lightgray",
+  bgColor: "white",
 };
 
 export const darkTheme = {
-  fontColor: "white",
-  bgColor: "#2c2c2c",
+  fontColor: "lightray",
+  bgColor: "white",
 }; 
 
 // global style will apply style globally
 export const GlobalStyles = createGlobalStyle`
   ${reset}
+  input {
+    all:unset;
+  }
   body {
     background-color: ${(props) => props.theme.bgColor};
   }
