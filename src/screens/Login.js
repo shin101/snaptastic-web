@@ -1,7 +1,8 @@
-import {faFacebook,faFacebookF,faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
+import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -15,7 +16,7 @@ const Container = styled.div`
 // setting the width of the WhiteBox to 100% ensures that the TopBox and BottomBox components will also have a width of 100% of their parent element's width
 const WhiteBox = styled.div`
   background-color: white;
-  border: 1px solid rgb(219, 219, 219);
+  border: 1px solid ${props => props.theme.borderColor};
   width: 100%;
 `;
 
@@ -33,28 +34,31 @@ const TopBox = styled(WhiteBox)`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    input {
-      width: 100%;
-      border-radius: 3px;
-      padding: 7px;
-      background-color: #fafafa;
-      border: 0.5px solid rgb(219, 219, 219);
-      margin-top: 5px;
-      box-sizing: border-box;
-  
-    &:last-child {
-      border: none;
-      margin-top: 12px;
-      background-color: #0095f6;
-      color: white;
-      text-align: center;
-      padding: 8px 0px;
-      font-weight: 600;
-      }
-    }
   }
 `;
 // box-sizing : ensures elements are sized and positioned precisely without calculating extra space for padding + borders
+
+const Input = styled.input`
+  width: 100%;
+  border-radius: 3px;
+  padding: 7px;
+  background-color: ${props => props.theme.accent};
+  border: 0.5px solid rgb(219, 219, 219);
+  margin-top: 5px;
+  box-sizing: border-box;
+`
+
+
+const Button = styled.input`
+  border: none;
+  margin-top: 12px;
+  background-color: #0095f6;
+  color: white;
+  text-align: center;
+  padding: 8px 0px;
+  font-weight: 600;
+  width: 100%;
+`
 
 const BottomBox = styled(WhiteBox)`
   padding: 35px 40px 25px 40px;
@@ -62,6 +66,8 @@ const BottomBox = styled(WhiteBox)`
   a {
     font-weight: 600;
     color: #0095f6;
+    text-decoration: none;
+    margin-left: 4px;
   }
 `;
 
@@ -85,6 +91,7 @@ const Separator = styled.div`
   span {
     margin: 0px 10px;
     font-weight: 600;
+    font-size: 12px;
     color: #8e8e8e;
   }
 
@@ -111,9 +118,9 @@ function Login(){
           </div>
           <h1>Snaptastic</h1>
           <form>
-            <input type="text" placeholder="Username"></input>
-            <input type="password" placeholder="Password"></input>
-            <input type="submit" value="Log in" />
+            <Input type="text" placeholder="Username"></Input>
+            <Input type="password" placeholder="Password"></Input>
+            <Button type="submit" value="Log in" />
           </form>
           <Separator>
             <div></div>
@@ -126,7 +133,8 @@ function Login(){
           </FacebookLogin>
         </TopBox>
         <BottomBox>
-          <span>Not a member?</span> <a href="#">Sign up</a>
+          <span>Not a member?</span> 
+          <Link to="/sign-up">Sign up</Link>
         </BottomBox>
       </Wrapper>
     </Container>

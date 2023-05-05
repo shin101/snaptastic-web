@@ -4,6 +4,8 @@ import reset from "styled-reset";
 export const lightTheme = {
   fontColor: "#2c2c2c",
   bgColor: "white",
+  accent: "#fafafa",
+  borderColor: "rgb(219, 219, 219)"
 };
 
 export const darkTheme = {
@@ -18,6 +20,8 @@ export const GlobalStyles = createGlobalStyle`
     all:unset;
   }
   body {
-    background-color: ${(props) => props.theme.bgColor};
+    background-color: #FAFAFA;
+    font-size: 15px;
+    color: rgb(38, 38, 38);
   }
 `;
