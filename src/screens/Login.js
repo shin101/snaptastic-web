@@ -11,6 +11,7 @@ import FormBox from "../components/auth/FormBox";
 import BottomBox from "../components/auth/BottomBox";
 import { FatLink } from "../components/shared";
 import PageTitle from "../components/PageTitle";
+import { useForm } from "react-hook-form";
 
 const FacebookLogin = styled.div`
   color: #385285; 
@@ -27,6 +28,13 @@ const SnaptasticText = styled(FatLink)`
 `
 
 function Login(){
+  const { register, handleSubmit } = useForm(); 
+  const onSubmitValid = (data) => {
+    console.log(data);
+  }
+  const onSubmitInvalid = (data) => {
+    console.log(data);
+  }
 
   return (
     <AuthLayout> 
@@ -36,9 +44,25 @@ function Login(){
             <FontAwesomeIcon icon={faCameraRetro} size="3x" />
           </div>
           <SnaptasticText>Snaptastic</SnaptasticText>
-          <form>
-            <Input type="text" placeholder="Username" />
-            <Input type="password" placeholder="Password" />
+          {/* no need to do prevent default when you use react form handle submit */}
+          <form onSubmit={handleSubmit(onSubmitValid, onSubmitInvalid)}>
+            {/* ref is equivalent to creating onChange, creating a state, etc */}
+            <Input 
+              {...register('username', { 
+                required: "username is required",
+                minLength: {value: 5, message: "username should be at least 5 characters long"},
+              })}
+              placeholder="Username"
+              type="text" 
+            />
+            <Input 
+              {...register('password', { 
+                required: "password is required",
+                minLength: {value: 5, message: "password should be at least 5 characters long"},
+              })}
+              type="password" 
+              placeholder="Password" 
+            />
             <Button type="submit" value="Log in" />
           </form>
           <Separator /> 
