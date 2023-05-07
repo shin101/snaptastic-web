@@ -2,7 +2,6 @@ import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import routes from "./routes";
 import AuthLayout from "../components/auth/AuthLayout";
 import Button from "../components/auth/Button";
@@ -11,6 +10,7 @@ import Input from "../components/auth/Input";
 import FormBox from "../components/auth/FormBox";
 import BottomBox from "../components/auth/BottomBox";
 import { FatLink } from "../components/shared";
+import PageTitle from "../components/PageTitle";
 
 const FacebookLogin = styled.div`
   color: #385285; 
@@ -29,7 +29,8 @@ const SnaptasticText = styled(FatLink)`
 function Login(){
 
   return (
-    <AuthLayout>  
+    <AuthLayout> 
+      <PageTitle title="Login" />
         <FormBox>
           <div>
             <FontAwesomeIcon icon={faCameraRetro} size="3x" />

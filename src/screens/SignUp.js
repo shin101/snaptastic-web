@@ -1,16 +1,14 @@
-import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
-import { Link } from "react-router-dom";
 import routes from "./routes";
 import AuthLayout from "../components/auth/AuthLayout";
 import Button from "../components/auth/Button";
-import Separator from "../components/auth/Separator";
 import Input from "../components/auth/Input";
 import FormBox from "../components/auth/FormBox";
 import BottomBox from "../components/auth/BottomBox";
 import styled from "styled-components";
 import { FatLink } from "../components/shared";
+import PageTitle from "../components/PageTitle";
 
 const HeaderContainer = styled.div`
   display:flex;
@@ -27,6 +25,7 @@ const SignupText = styled(FatLink)`
 function SignUp(){
   return (
     <AuthLayout>  
+      <PageTitle title="Sign Up" />
         <FormBox>
         <HeaderContainer>
           <FontAwesomeIcon icon={faCameraRetro} size="3x" />
@@ -42,7 +41,6 @@ function SignUp(){
         
         </FormBox>
         <BottomBox cta="Have an account?" linkText="Log in" link={routes.home} />
-       
     </AuthLayout>
   );
 }
