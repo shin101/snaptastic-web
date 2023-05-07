@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledInput = 
+const Input = 
   styled.input`
     width: 100%;
     border-radius: 3px;
@@ -12,9 +12,5 @@ const StyledInput =
   `
 // box-sizing : ensures elements are sized and positioned precisely without calculating extra space for padding + borders
 
-
-function Input(props){
-  return <StyledInput {...props} />
-}
 
 export default Input;

@@ -10,7 +10,7 @@ import Separator from "../components/auth/Separator";
 import Input from "../components/auth/Input";
 import FormBox from "../components/auth/FormBox";
 import BottomBox from "../components/auth/BottomBox";
-
+import { FatLink } from "../components/shared";
 
 const FacebookLogin = styled.div`
   color: #385285; 
@@ -20,6 +20,12 @@ const FacebookLogin = styled.div`
   }
 `;
 
+const SnaptasticText = styled(FatLink)`
+  font-size: 16px;
+  text-align;: center;
+  margin-top: 10px;
+`
+
 function Login(){
 
   return (
@@ -28,7 +34,7 @@ function Login(){
           <div>
             <FontAwesomeIcon icon={faCameraRetro} size="3x" />
           </div>
-          <h1>Snaptastic</h1>
+          <SnaptasticText>Snaptastic</SnaptasticText>
           <form>
             <Input type="text" placeholder="Username" />
             <Input type="password" placeholder="Password" />
