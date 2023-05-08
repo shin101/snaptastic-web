@@ -6,7 +6,7 @@ const Input =
     border-radius: 3px;
     padding: 7px;
     background-color: ${props => props.theme.accent};
-    border: 0.5px solid rgb(219, 219, 219);
+    border: 0.5px solid ;
     margin-top: 5px;
     box-sizing: border-box;
   `

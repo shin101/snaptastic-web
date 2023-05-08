@@ -12,6 +12,7 @@ import BottomBox from "../components/auth/BottomBox";
 import { FatLink } from "../components/shared";
 import PageTitle from "../components/PageTitle";
 import { useForm } from "react-hook-form";
+import FormError from "../components/auth/FormError";
 
 const FacebookLogin = styled.div`
   color: #385285; 
@@ -28,13 +29,15 @@ const SnaptasticText = styled(FatLink)`
 `
 
 function Login(){
-  const { register, handleSubmit } = useForm(); 
+  // used onBlur instead of onChange
+  // makes sure 'password is not long enough' error message won't show on every keystroke
+  const { register, handleSubmit, formState } = useForm({
+    mode: "onBlur",
+  }); 
   const onSubmitValid = (data) => {
     console.log(data);
   }
-  const onSubmitInvalid = (data) => {
-    console.log(data);
-  }
+
 
   return (
     <AuthLayout> 
@@ -45,25 +48,27 @@ function Login(){
           </div>
           <SnaptasticText>Snaptastic</SnaptasticText>
           {/* no need to do prevent default when you use react form handle submit */}
-          <form onSubmit={handleSubmit(onSubmitValid, onSubmitInvalid)}>
+          <form onSubmit={handleSubmit(onSubmitValid)}>
             {/* ref is equivalent to creating onChange, creating a state, etc */}
             <Input 
               {...register('username', { 
                 required: "username is required",
-                minLength: {value: 5, message: "username should be at least 5 characters long"},
+                minLength: {value: 5, message: "username must be at least 5 characters long"},
               })}
               placeholder="Username"
-              type="text" 
+              type="text"
             />
+            <FormError message={formState.errors?.username?.message} />
             <Input 
               {...register('password', { 
                 required: "password is required",
-                minLength: {value: 5, message: "password should be at least 5 characters long"},
+                minLength: {value: 5, message: "password must be at least 5 characters long"},
               })}
               type="password" 
               placeholder="Password" 
             />
-            <Button type="submit" value="Log in" />
+            <FormError message={formState.errors?.password?.message} />
+            <Button type="submit" value="Log in" disabled={!formState.isValid} />
           </form>
           <Separator /> 
           <FacebookLogin>
