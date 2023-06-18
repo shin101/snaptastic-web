@@ -14,6 +14,7 @@ import PageTitle from "../components/PageTitle";
 import { useForm } from "react-hook-form";
 import FormError from "../components/auth/FormError";
 import { gql, useMutation } from "@apollo/client";
+import { logUserIn } from "../apollo";
 
 const FacebookLogin = styled.div`
   color: #385285;
@@ -42,7 +43,14 @@ const LOGIN_MUTATION = gql`
 function Login() {
   // used onBlur instead of onChange
   // makes sure 'password is not long enough' error message won't show on every keystroke
-  const { register, handleSubmit, formState, getValues, setError } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState,
+    getValues,
+    setError,
+    clearErrors,
+  } = useForm({
     mode: "onBlur",
   });
   const onCompleted = (data) => {
@@ -50,9 +58,12 @@ function Login() {
       login: { ok, error, token },
     } = data;
     if (!ok) {
-      setError("result", {
+      return setError("result", {
         message: error,
       });
+    }
+    if (token) {
+      logUserIn(token);
     }
   };
   const [login, { loading }] = useMutation(LOGIN_MUTATION, {
@@ -66,6 +77,9 @@ function Login() {
     login({
       variables: { username, password },
     });
+  };
+  const clearLoginError = () => {
+    clearErrors("result");
   };
 
   return (
@@ -82,6 +96,9 @@ function Login() {
           <Input
             {...register("username", {
               required: "username is required",
+              onChange() {
+                clearLoginError();
+              },
               minLength: {
                 value: 5,
                 message: "username must be at least 5 characters long",
@@ -99,6 +116,7 @@ function Login() {
                 message: "password must be at least 5 characters long",
               },
             })}
+            onChange={clearLoginError}
             type="password"
             placeholder="Password"
           />
