@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import FormError from "../components/auth/FormError";
 import { gql, useMutation } from "@apollo/client";
 import { logUserIn } from "../apollo";
+import { useLocation } from "react-router-dom";
 
 const FacebookLogin = styled.div`
   color: #385285;
@@ -30,6 +31,10 @@ const SnaptasticText = styled(FatLink)`
   margin-top: 10px;
 `;
 
+const Notification = styled.div`
+  color: #2ecc71;
+`;
+
 const LOGIN_MUTATION = gql`
   mutation login($username: String!, $password: String!) {
     login(username: $username, password: $password) {
@@ -43,6 +48,8 @@ const LOGIN_MUTATION = gql`
 function Login() {
   // used onBlur instead of onChange
   // makes sure 'password is not long enough' error message won't show on every keystroke
+  const location = useLocation();
+  console.log(location);
   const {
     register,
     handleSubmit,
@@ -52,6 +59,11 @@ function Login() {
     clearErrors,
   } = useForm({
     mode: "onBlur",
+    // this helps prefill login page with username and password after you create an account
+    defaultValues: {
+      username: location?.state?.username || "",
+      password: location?.state?.password || "",
+    },
   });
   const onCompleted = (data) => {
     const {
@@ -91,6 +103,7 @@ function Login() {
         </div>
         <SnaptasticText>Snaptastic</SnaptasticText>
         {/* no need to do prevent default when you use react form handle submit */}
+        <Notification>{location?.state?.message}</Notification>
         <form onSubmit={handleSubmit(onSubmitValid)}>
           {/* ref is equivalent to creating onChange, creating a state, etc */}
           <Input

@@ -21,7 +21,7 @@ const HeaderContainer = styled.div`
 
 const SignupText = styled(FatLink)`
   font-size: 16px;
-  text-align;: center;
+  text-align: center;
   margin-top: 10px;
 `;
 
@@ -49,25 +49,33 @@ const CREATE_ACCOUNT_MUTATION = gql`
 function SignUp() {
   const navigate = useNavigate();
   const onCompleted = (data) => {
+    // getValues will make so that the moment you crete an account & redirected to login page, login page is prefilled with your username & password info
+    const { username, password } = getValues();
     const {
       createAccount: { ok, error },
     } = data;
     if (!ok) {
       return;
     }
-    navigate(routes.home);
+    // console.log(formState)
+    navigate(routes.home, {
+      state: {
+        message: "Account created, please log in",
+        username,
+        password,
+      },
+    });
   };
   const [createAccount, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
     onCompleted,
   });
-  const { register, handleSubmit, errors, formState } = useForm({
+  const { register, handleSubmit, errors, formState, getValues } = useForm({
     mode: "onChange",
   });
   const onSubmitValid = (data) => {
     if (loading) {
       return;
     }
-
     createAccount({ variables: { ...data } });
   };
   return (
