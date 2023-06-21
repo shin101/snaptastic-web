@@ -9,7 +9,7 @@ import { GlobalStyles, darkTheme, lightTheme } from "./styles";
 import SignUp from "./screens/SignUp";
 import routes from "./screens/routes";
 import { HelmetProvider } from "react-helmet-async";
-
+import { Layout } from "./components/Layout";
 
 function App() {
   // use header (apollo useReactiveVar) instead of passing down isLoggedIn props per page
@@ -23,20 +23,36 @@ function App() {
           <BrowserRouter>
             <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
               <GlobalStyles />
-                <Routes>
-                    <Route exact path={routes.home} element={isLoggedIn? <Home /> : <Login />} /> 
-                    <Route exact path="/login" element={<Login/>} />
-                      {!isLoggedIn && <Route exact path="/sign-up" element={<SignUp/>} /> }
-                    <Route exact path="*" element={<NotFound/>} />
-                    {/* Alternatively, useRoute path="*" element={<Navigate to="/" />} /> */}
-                </Routes>
+              <Routes>
+                <Route
+                  exact
+                  path={routes.home}
+                  element={
+                    isLoggedIn ? (
+                      <Layout>
+                        <Home />
+                      </Layout>
+                    ) : (
+                      // delete <Layout></Layout> below later
+                      <Layout>
+                        <Login />
+                      </Layout>
+                    )
+                  }
+                />
+                <Route exact path="/login" element={<Login />} />
+                {!isLoggedIn && (
+                  <Route exact path="/sign-up" element={<SignUp />} />
+                )}
+                <Route exact path="*" element={<NotFound />} />
+                {/* Alternatively, useRoute path="*" element={<Navigate to="/" />} /> */}
+              </Routes>
             </ThemeProvider>
           </BrowserRouter>
-        </HelmetProvider> 
+        </HelmetProvider>
       </ApolloProvider>
     </div>
-    );
-    
+  );
 }
 
 export default App;
