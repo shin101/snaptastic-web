@@ -1,10 +1,14 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import { darkModeVar, disableDarkMode, enableDarkMode } from "../../apollo";
+import { useReactiveVar } from "@apollo/client";
 
 const Container = styled.div`
-  display:flex;
+  display: flex;
   height: 100vh;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   flex-direction: column;
 `;
 
@@ -14,12 +18,26 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-function AuthLayout({children}){
+const Footer = styled.footer`
+  margin-top: 20px;
+`;
+const DarkModeBtn = styled.span`
+  cursor: pointer;
+`;
+
+function AuthLayout({ children }) {
+  const darkMode = useReactiveVar(darkModeVar);
+
   return (
     <Container>
       <Wrapper>{children}</Wrapper>
+      <Footer>
+        <DarkModeBtn onClick={darkMode ? disableDarkMode : enableDarkMode}>
+          <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+        </DarkModeBtn>
+      </Footer>
     </Container>
-  )
+  );
 }
 
 export default AuthLayout;
