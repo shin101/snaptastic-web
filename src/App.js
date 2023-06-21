@@ -33,10 +33,7 @@ function App() {
                         <Home />
                       </Layout>
                     ) : (
-                      // delete <Layout></Layout> below later
-                      <Layout>
-                        <Login />
-                      </Layout>
+                      <Login />
                     )
                   }
                 />

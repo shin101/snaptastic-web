@@ -6,6 +6,11 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useReactiveVar } from "@apollo/client";
+import { isLoggedInVar } from "../apollo";
+import { NavLink } from "react-router-dom";
+import routes from "../screens/routes";
+import { useUser } from "../hooks/useUser";
 
 const SHeader = styled.header`
   width: 100%;
@@ -31,7 +36,17 @@ const Icon = styled.span`
   margin-left: 15px;
 `;
 
+const Button = styled.span`
+  background-color: ${(props) => props.theme.accent};
+  border-radius: 4px;
+  padding: 4px 15px;
+  color: white;
+  font-weight: 600;
+`;
+
 export const Header = () => {
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
+  const loggedInUser = useUser();
   return (
     <SHeader>
       <Wrapper>
@@ -39,15 +54,23 @@ export const Header = () => {
           <FontAwesomeIcon icon={faCameraRetro} size="2x" />
         </Column>
         <Column>
-          <Icon>
-            <FontAwesomeIcon icon={faHome} size="lg" />
-          </Icon>
-          <Icon>
-            <FontAwesomeIcon icon={faCompass} size="lg" />
-          </Icon>{" "}
-          <Icon>
-            <FontAwesomeIcon icon={faUser} size="lg" />
-          </Icon>
+          {isLoggedIn ? (
+            <>
+              <Icon>
+                <FontAwesomeIcon icon={faHome} size="lg" />
+              </Icon>
+              <Icon>
+                <FontAwesomeIcon icon={faCompass} size="lg" />
+              </Icon>{" "}
+              <Icon>
+                <FontAwesomeIcon icon={faUser} size="lg" />
+              </Icon>
+            </>
+          ) : (
+            <NavLink to={routes.home}>
+              <Button>Login</Button>
+            </NavLink>
+          )}
         </Column>
       </Wrapper>
     </SHeader>

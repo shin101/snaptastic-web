@@ -38,7 +38,7 @@ const Notification = styled.div`
 const LOGIN_MUTATION = gql`
   mutation login($username: String!, $password: String!) {
     login(username: $username, password: $password) {
-      oken
+      ok
       token
       error
     }
