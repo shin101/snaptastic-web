@@ -23,4 +23,5 @@ export const useUser = () => {
       LogUserOut();
     }
   }, [data]);
+  return { data };
 };
