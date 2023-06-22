@@ -35,7 +35,12 @@ export const disableDarkMode = () => {
   darkModeVar(false);
 };
 
-const httpLink = createHttpLink({ uri: "http://localhost:4000/graphql" });
+const httpLink = createHttpLink({
+  uri:
+    process.env.NODE_ENV === "production"
+      ? "https://snaptastic.onrender.com"
+      : "http://localhost:4000/graphql",
+});
 
 const authLink = setContext((_, { headers }) => {
   // we return previous headers + new token in the local storage
