@@ -49,7 +49,6 @@ function Login() {
   // used onBlur instead of onChange
   // makes sure 'password is not long enough' error message won't show on every keystroke
   const location = useLocation();
-  console.log(location);
   const {
     register,
     handleSubmit,
