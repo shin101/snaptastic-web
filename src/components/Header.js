@@ -69,8 +69,11 @@ export const Header = () => {
                 <FontAwesomeIcon icon={faCompass} size="lg" />
               </Icon>
               <Icon>
-                <Avatar url={data?.me?.avatar} />
+                <NavLink to={`/users/${data?.me?.username}`}>
+                  <Avatar url={data?.me?.avatar} />
+                </NavLink>
               </Icon>
+
             </IconsContainer>
           ) : (
             <NavLink to={routes.home}>

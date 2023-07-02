@@ -1,11 +1,12 @@
 import {
   ApolloClient,
-  HttpLink,
   InMemoryCache,
   createHttpLink,
   makeVar,
 } from "@apollo/client";
-import routes from "./screens/routes";
+import { redirect } from "react-router-dom";
+
+
 import { setContext } from "@apollo/client/link/context";
 
 const TOKEN = "TOKEN";
@@ -16,10 +17,10 @@ export const logUserIn = (token) => {
   localStorage.setItem(TOKEN, token);
   isLoggedInVar(true);
 };
-export const LogUserOut = (navigate) => {
+export const logUserOut = () => {
   localStorage.removeItem(TOKEN);
   isLoggedInVar(false);
-  navigate(routes.home, { replace: true });
+  return redirect("/login");
 };
 export const darkModeVar = makeVar(
   Boolean(localStorage.getItem(DARK_MODE) === "enabled")

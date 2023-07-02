@@ -1,5 +1,5 @@
 import { gql, useQuery, useReactiveVar } from "@apollo/client";
-import { LogUserOut, isLoggedInVar } from "../apollo";
+import { logUserOut, isLoggedInVar} from "../apollo";
 import { useEffect } from "react";
 
 const ME_QUERY = gql`
@@ -17,11 +17,13 @@ export const useUser = () => {
   // below is a query that is only going to run if the user is logged in via local storage token
   const { data } = useQuery(ME_QUERY, { skip: !hasToken });
 
-  useEffect(() => {
-    if (data?.me === null) {
-      // Means there is a token on local storage but the token did not work on the backend.. maybe user faked a token or tampered with token
-      LogUserOut();
-    }
-  }, [data]);
+  // TESTING.... UNCOMMENT THE CODE BELOW LATER 
+
+  // useEffect(() => {
+  //   if (data?.me === null) {
+  //     // Means there is a token on local storage but the token did not work on the backend.. maybe user faked a token or tampered with token
+  //     logUserOut();
+  //   }
+  // }, [data]);
   return { data };
 };
