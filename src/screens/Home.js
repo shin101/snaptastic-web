@@ -15,14 +15,11 @@ import {
 const FEED_QUERY = gql`
   query seeFeed {
     seeFeed {
-      id
       user {
         username
         avatar
       }
-      file
       caption
-      likes
       comments
       createdAt
       isMine
@@ -68,7 +65,6 @@ const PhotoAction = styled.div`
 
 function Home() {
   const { data } = useQuery(FEED_QUERY);
-  console.log(data);
 
   const navigate = useNavigate();
 

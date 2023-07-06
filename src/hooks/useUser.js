@@ -5,6 +5,7 @@ import { useEffect } from "react";
 const ME_QUERY = gql`
   query me {
     me {
+      id
       username
       avatar
     }
@@ -15,7 +16,10 @@ const ME_QUERY = gql`
 export const useUser = () => {
   const hasToken = useReactiveVar(isLoggedInVar);
   // below is a query that is only going to run if the user is logged in via local storage token
+
+
   const { data } = useQuery(ME_QUERY, { skip: !hasToken });
+  console.log(data)
 
   // TESTING.... UNCOMMENT THE CODE BELOW LATER 
 
