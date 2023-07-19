@@ -10,7 +10,8 @@ import {
   faComment,
   faHeart,
   faPaperPlane,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-regular-svg-icons";
+import { faHeart as SolidHeart } from "@fortawesome/free-solid-svg-icons";
 
 const FEED_QUERY = gql`
   query seeFeed {
@@ -23,6 +24,7 @@ const FEED_QUERY = gql`
       comments
       createdAt
       isMine
+      isLiked
     }
   }
 `;
@@ -86,7 +88,11 @@ function Home() {
             <PhotoActions>
               <div>
                 <PhotoAction>
-                  <FontAwesomeIcon size={"2x"} icon={faHeart} />
+                  <FontAwesomeIcon
+                    size={"2x"}
+                    style={{ color: photo.isLiked ? "tomato" : "inherit" }}
+                    icon={photo.isLiked ? SolidHeart : faHeart}
+                  />
                 </PhotoAction>
                 <PhotoAction>
                   <FontAwesomeIcon size={"2x"} icon={faComment} />
