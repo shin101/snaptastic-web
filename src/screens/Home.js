@@ -14,7 +14,18 @@ const FEED_QUERY = gql`
       }
       file
       caption
-      comments
+      likes
+      commentNumber
+      comments {
+        id
+        user {
+          username
+          avatar
+        }
+        payload
+        isMine
+        createdAt
+      }
       createdAt
       isMine
       isLiked
@@ -29,7 +40,7 @@ function Home() {
 
   return (
     <div>
-      <PageTitle title="Home"/>
+      <PageTitle title="Home" />
       <button onClick={logUserOut}>Log Out</button>
       {data?.seeFeed?.map((photo) => (
         <Photo key={photo.id} {...photo} />
