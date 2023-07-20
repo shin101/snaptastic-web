@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { logUserOut } from "../../src/apollo";
 import { gql, useQuery } from "@apollo/client";
 import Photo from "../components/feed/Photo";
+import PageTitle from "../components/PageTitle";
 
 const FEED_QUERY = gql`
   query seeFeed {
@@ -23,12 +24,13 @@ const FEED_QUERY = gql`
 
 function Home() {
   const { data } = useQuery(FEED_QUERY);
- 
 
   const navigate = useNavigate();
 
   return (
     <div>
+      <PageTitle title="Home"/>
+      <button onClick={logUserOut}>Log Out</button>
       {data?.seeFeed?.map((photo) => (
         <Photo key={photo.id} {...photo} />
       ))}
