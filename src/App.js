@@ -10,14 +10,23 @@ import SignUp from "./screens/SignUp";
 import routes from "./screens/routes";
 import { HelmetProvider } from "react-helmet-async";
 import { Layout } from "./components/Layout";
+import React, { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // use header (apollo useReactiveVar) instead of passing down isLoggedIn props per page
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const darkMode = useReactiveVar(darkModeVar);
 
+  useEffect(() => {
+      toast("COMING SOON: Download our app to upload photo and for better user experience!", {autoClose: false, closeButton: true});
+
+  }, []);
+
   return (
     <div>
+      <ToastContainer position="bottom-right" />
       <ApolloProvider client={client}>
         <HelmetProvider>
           <BrowserRouter>
