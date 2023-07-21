@@ -112,7 +112,7 @@ function Photo({
     <PhotoContainer key={id}>
       <PhotoHeader>
         <NavLink to={`/users/${user.username}`}>
-          <Avatar lg url={user.avatar} />
+          <Avatar lg url={user.avatar || "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg"} />
         </NavLink>
         <NavLink to={`/users/${user.username}`}>
           <Username>{user.username}</Username>

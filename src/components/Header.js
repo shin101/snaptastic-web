@@ -63,7 +63,9 @@ export const Header = () => {
           {isLoggedIn ? (
             <IconsContainer>
               <Icon>
-                <FontAwesomeIcon icon={faHome} size="lg" />
+                <NavLink to={routes.home}>
+                  <FontAwesomeIcon icon={faHome} size="lg" />
+                </NavLink>
               </Icon>
               <Icon>
                 <FontAwesomeIcon icon={faCompass} size="lg" />
@@ -73,7 +75,6 @@ export const Header = () => {
                   <Avatar url={data?.me?.avatar} />
                 </NavLink>
               </Icon>
-
             </IconsContainer>
           ) : (
             <NavLink to={routes.home}>

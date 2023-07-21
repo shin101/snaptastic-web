@@ -53,7 +53,7 @@ function App() {
                 {!isLoggedIn && (
                   <Route exact path="/sign-up" element={<SignUp />} />
                 )}
-                <Route path={`/users/:username`} element={<Profile />} />
+                <Route path={`/users/:username`} element={<Layout><Profile/></Layout>} />
                 <Route exact path="*" element={<NotFound />} />
                 {/* Alternatively, useRoute path="*" element={<Navigate to="/" />} /> */}
               </Routes>

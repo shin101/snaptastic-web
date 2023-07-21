@@ -57,7 +57,6 @@ function SignUp() {
     if (!ok) {
       return;
     }
-    // console.log(formState)
     navigate(routes.home, {
       state: {
         message: "Account created, please log in",
