@@ -12,6 +12,7 @@ import styled from "styled-components";
 import Avatar from "../Avatar";
 import { FatText } from "../shared";
 import Comments from "./Comments";
+import { NavLink } from "react-router-dom";
 
 const TOGGLE_LIKE_MUTATION = gql`
   mutation toggleLike($id: Int!) {
@@ -110,8 +111,12 @@ function Photo({
   return (
     <PhotoContainer key={id}>
       <PhotoHeader>
-        <Avatar lg url={user.avatar} />
-        <Username>{user.username}</Username>
+        <NavLink to={`/users/${user.username}`}>
+          <Avatar lg url={user.avatar} />
+        </NavLink>
+        <NavLink to={`/users/${user.username}`}>
+          <Username>{user.username}</Username>
+        </NavLink>
       </PhotoHeader>
       <PhotoFile src={file} alt="pic" />
       <PhotoData>

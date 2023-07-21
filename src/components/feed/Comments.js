@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Comment from "./Comment";
+import { NavLink } from "react-router-dom";
 
 const CommentsContainer = styled.div`
   margin-top: 20px;
@@ -16,7 +17,12 @@ const CommentCount = styled.span`
 function Comments({ author, caption, commentNumber, comments }) {
   return (
     <CommentsContainer>
-      <Comment author={author} payload={caption} />
+      <NavLink to={`/users/${author}`}>
+        <Comment author={author} />
+      </NavLink>
+      {/* Fix caption formatting Later */}
+      <div>{caption}</div>
+
       <CommentCount>
         {commentNumber === 1 ? "1 comment" : `${commentNumber} comments`}
       </CommentCount>

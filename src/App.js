@@ -13,6 +13,7 @@ import { Layout } from "./components/Layout";
 import React, { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Profile from "./screens/Profile";
 
 function App() {
   // use header (apollo useReactiveVar) instead of passing down isLoggedIn props per page
@@ -20,8 +21,10 @@ function App() {
   const darkMode = useReactiveVar(darkModeVar);
 
   useEffect(() => {
-      toast("COMING SOON: Download our app to upload photo and for better user experience!", {autoClose: false, closeButton: true});
-
+    toast(
+      "COMING SOON: Download our app to upload photo and for better user experience!",
+      { autoClose: false, closeButton: true }
+    );
   }, []);
 
   return (
@@ -50,6 +53,7 @@ function App() {
                 {!isLoggedIn && (
                   <Route exact path="/sign-up" element={<SignUp />} />
                 )}
+                <Route path={`/users/:username`} element={<Profile />} />
                 <Route exact path="*" element={<NotFound />} />
                 {/* Alternatively, useRoute path="*" element={<Navigate to="/" />} /> */}
               </Routes>
