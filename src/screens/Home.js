@@ -35,7 +35,6 @@ const FEED_QUERY = gql`
 
 function Home() {
   const { data } = useQuery(FEED_QUERY);
-
   const navigate = useNavigate();
 
   return (
