@@ -21,13 +21,12 @@ export const useUser = () => {
   const { data } = useQuery(ME_QUERY, { skip: !hasToken });
   console.log(data)
 
-  // TESTING.... UNCOMMENT THE CODE BELOW LATER 
 
-  // useEffect(() => {
-  //   if (data?.me === null) {
-  //     // Means there is a token on local storage but the token did not work on the backend.. maybe user faked a token or tampered with token
-  //     logUserOut();
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (data?.me === null) {
+      // Means there is a token on local storage but the token did not work on the backend.. maybe user faked a token or tampered with token
+      logUserOut();
+    }
+  }, [data]);
   return { data };
 };

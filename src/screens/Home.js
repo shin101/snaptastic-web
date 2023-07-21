@@ -1,41 +1,31 @@
-import { useNavigate } from "react-router-dom";
 import { logUserOut } from "../../src/apollo";
 import { gql, useQuery } from "@apollo/client";
 import Photo from "../components/feed/Photo";
 import PageTitle from "../components/PageTitle";
+import { COMMENT_FRAGMENT, PHOTO_FRAGMENT } from "../fragments";
 
 const FEED_QUERY = gql`
   query seeFeed {
     seeFeed {
-      id
+      ...PhotoFragment
       user {
         username
         avatar
       }
-      file
       caption
-      likes
-      commentNumber
       comments {
-        id
-        user {
-          username
-          avatar
-        }
-        payload
-        isMine
-        createdAt
+        ...CommentFragment
       }
       createdAt
       isMine
-      isLiked
     }
   }
+  ${PHOTO_FRAGMENT}
+  ${COMMENT_FRAGMENT}
 `;
 
 function Home() {
   const { data } = useQuery(FEED_QUERY);
-  const navigate = useNavigate();
 
   return (
     <div>
