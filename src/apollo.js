@@ -6,7 +6,6 @@ import {
 } from "@apollo/client";
 import { redirect } from "react-router-dom";
 
-
 import { setContext } from "@apollo/client/link/context";
 
 const TOKEN = "TOKEN";
@@ -50,5 +49,7 @@ const authLink = setContext((_, { headers }) => {
 
 export const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: { User: { keyFields: (obj) => `User: ${obj.username}` } },
+  }),
 });
