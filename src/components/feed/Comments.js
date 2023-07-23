@@ -18,7 +18,7 @@ function Comments({ author, caption, commentNumber, comments }) {
   return (
     <CommentsContainer>
       <NavLink to={`/users/${author}`}>
-        <Comment author={author} />
+        <Comment author={author} payload={caption} />
       </NavLink>
       {/* Fix caption formatting Later */}
       <div>{caption}</div>

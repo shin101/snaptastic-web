@@ -6,6 +6,7 @@ const SAvatar = styled.div`
   border-radius: 50%;
   background-color: #2c2c2c;
   overflow: hidden;
+  border: none;
 `;
 
 const Img = styled.img`
