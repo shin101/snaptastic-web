@@ -26,7 +26,7 @@ function Comment({ author, payload }) {
         {payload?.split(" ").map((word, index) =>
           /#[\w]+/.test(word) ? (
             <React.Fragment key={index}>
-              <NavLink to={`/hashtags/${word}`}>{word}</NavLink>{" "}
+              <NavLink to={`/hashtags/${word}`}  >{word}</NavLink>{" "}
             </React.Fragment>
           ) : (
             <React.Fragment key={index}>{word} </React.Fragment>
@@ -43,3 +43,4 @@ Comment.propTypes = {
 };
 
 export default Comment;
+
