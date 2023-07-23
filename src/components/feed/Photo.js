@@ -29,6 +29,7 @@ const PhotoContainer = styled.div`
   margin-bottom: 20px;
   max-width: 615px;
 `;
+
 const PhotoHeader = styled.div`
   padding: 15px;
   display: flex;
@@ -47,15 +48,18 @@ const PhotoFile = styled.img`
 const PhotoData = styled.div`
   padding: 15px;
 `;
+
 const PhotoActions = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   div {
     display: flex;
     align-items: center;
   }
 `;
+
 const PhotoAction = styled.div`
   margin-right: 10px;
   cursor: pointer;
@@ -82,37 +86,42 @@ function Photo({
         toggleLike: { ok },
       },
     } = result;
+
     if (ok) {
-      const fragmentId = `Photo:${id}`;
-      const fragment = gql`
-        fragment BSName on Photo {
-          isLiked
-          likes
-        }
-      `;
-      const result = cache.readFragment({ id: fragmentId, fragment: fragment });
-      if ("isLiked" in result && "likes" in result) {
-        const { isLiked: cacheIsLiked, likes: cacheLikes } = result;
-        cache.writeFragment({
-          id: fragmentId,
-          fragment: fragment,
-          data: {
-            isLiked: !cacheIsLiked,
-            likes: cacheLikes ? cacheLikes - 1 : cacheLikes + 1,
+      const photoId = `Photo:${id}`;
+      cache.modify({
+        id: photoId,
+        fields: {
+          isLiked(prev) {
+            return !prev;
           },
-        });
-      }
+          likes(prev) {
+            if (isLiked) {
+              return prev - 1;
+            }
+            return prev + 1;
+          },
+        },
+      });
     }
   };
+
   const [toggleLikeMutation] = useMutation(TOGGLE_LIKE_MUTATION, {
     variables: { id },
     update: updateToggleLike,
   });
+
   return (
     <PhotoContainer key={id}>
       <PhotoHeader>
         <NavLink to={`/users/${user.username}`}>
-          <Avatar lg url={user.avatar || "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg"} />
+          <Avatar
+            lg
+            url={
+              user.avatar ||
+              "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg"
+            }
+          />
         </NavLink>
         <NavLink to={`/users/${user.username}`}>
           <Username>{user.username}</Username>
@@ -164,4 +173,5 @@ Photo.propTypes = {
   likes: PropTypes.number.isRequired,
   commentNumber: PropTypes.number.isRequired,
 };
+
 export default Photo;
