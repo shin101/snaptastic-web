@@ -25,7 +25,11 @@ const FEED_QUERY = gql`
 `;
 
 function Home() {
-  const { data } = useQuery(FEED_QUERY);
+  const { data, loading } = useQuery(FEED_QUERY);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>

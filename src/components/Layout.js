@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Content = styled.main`
   margin: 0 auto;
-  margin-top: 45px;
+  margin-top: 100px;
   max-width: 930px;
   width: 100%;
 `;

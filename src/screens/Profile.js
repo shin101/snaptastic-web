@@ -110,7 +110,14 @@ const SEE_PROFILE_QUERY = gql`
 
 function Profile() {
   const { username } = useParams();
-  const { data } = useQuery(SEE_PROFILE_QUERY, { variables: { username } });
+  const { data, loading, error } = useQuery(SEE_PROFILE_QUERY, { variables: { username } });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div>

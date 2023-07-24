@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { FatText } from "../shared";
 import { NavLink } from "react-router-dom";
 
-const CommentContainer = styled.div``;
+const CommentContainer = styled.div`
+  margin: 7px 0px;
+`;
 const CommentCaption = styled.span`
   margin-left: 10px;
   a {
@@ -18,7 +20,6 @@ const CommentCaption = styled.span`
 `;
 
 function Comment({ author, payload }) {
-
   return (
     <CommentContainer>
       <FatText>{author}</FatText>
@@ -26,7 +27,7 @@ function Comment({ author, payload }) {
         {payload?.split(" ").map((word, index) =>
           /#[\w]+/.test(word) ? (
             <React.Fragment key={index}>
-              <NavLink to={`/hashtags/${word}`}  >{word}</NavLink>{" "}
+              <NavLink to={`/hashtags/${word}`}>{word}</NavLink>{" "}
             </React.Fragment>
           ) : (
             <React.Fragment key={index}>{word} </React.Fragment>
@@ -43,4 +44,3 @@ Comment.propTypes = {
 };
 
 export default Comment;
-

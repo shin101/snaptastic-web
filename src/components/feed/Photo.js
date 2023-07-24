@@ -90,7 +90,7 @@ function Photo({
     if (ok) {
       const photoId = `Photo:${id}`;
       cache.modify({
-        id: photoId,
+        id:photoId,
         fields: {
           isLiked(prev) {
             return !prev;

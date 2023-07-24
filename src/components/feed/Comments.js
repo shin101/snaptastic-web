@@ -4,6 +4,7 @@ import Comment from "./Comment";
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { gql, useMutation } from "@apollo/client";
+import { useUser } from "../../hooks/useUser";
 
 const CommentsContainer = styled.div`
   margin-top: 20px;
@@ -16,20 +17,62 @@ const CommentCount = styled.span`
   font-size: 10px;
 `;
 
+const PostCommentContainer = styled.div`
+  margin-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-top: 1px solid ${(props) => props.theme.borderColor};
+`;
+
 const CREATE_COMMENT_MUTATION = gql`
   mutation createComment($photoId: Int!, $payload: String!) {
     createComment(photoId: $photoId, payload: $payload) {
       ok
       error
+      id
     }
   }
 `;
 
 function Comments({ author, caption, commentNumber, comments, photoId }) {
+  const { data: userData } = useUser();
+  const { register, handleSubmit, setValue, getValues } = useForm();
+  const createCommentUpdate = (cache, result) => {
+    const { payload } = getValues();
+    setValue("payload", "");
+    const {
+      data: {
+        createComment: { ok, id },
+      },
+    } = result;
+    if (ok && userData?.me) {
+      const newComment = {
+        __typename: "Comment",
+        createdAt: Date.now() + "",
+        id,
+        isMine: true,
+        payload,
+        user: { ...userData.me },
+      };
+      cache.modify({
+        id: `Photo:${photoId}`,
+        fields: {
+          comments(prev) {
+            return [...prev, newComment];
+          },
+          commentNumber(prev) {
+            return prev + 1;
+          },
+        },
+      });
+    }
+  };
   const [createCommentMutation, { loading }] = useMutation(
-    CREATE_COMMENT_MUTATION
+    CREATE_COMMENT_MUTATION,
+    {
+      update: createCommentUpdate,
+    }
   );
-  const { register, handleSubmit, setValue } = useForm();
   const onValid = (data) => {
     const { payload } = data;
     if (loading) {
@@ -42,7 +85,6 @@ function Comments({ author, caption, commentNumber, comments, photoId }) {
         payload,
       },
     });
-    setValue("payload", "");
   };
 
   return (
@@ -63,15 +105,17 @@ function Comments({ author, caption, commentNumber, comments, photoId }) {
         />
       ))}
       <div>
-        <form onSubmit={handleSubmit(onValid)}>
-          <input
-            name="payload"
-            // ref={register({ required: true })}
-            {...register("payload", { required: true })}
-            type="text"
-            placeholder="Write a comment..."
-          />
-        </form>
+        <PostCommentContainer>
+          <form onSubmit={handleSubmit(onValid)}>
+            <input
+              name="payload"
+              // ref={register({ required: true })}
+              {...register("payload", { required: true })}
+              type="text"
+              placeholder="Write a comment..."
+            />
+          </form>
+        </PostCommentContainer>
       </div>
     </CommentsContainer>
   );

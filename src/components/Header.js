@@ -21,6 +21,10 @@ const SHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  top:0;
+  z-index:100;
+
 `;
 
 const Wrapper = styled.div`
@@ -72,7 +76,12 @@ export const Header = () => {
               </Icon>
               <Icon>
                 <NavLink to={`/users/${data?.me?.username}`}>
-                  <Avatar url={data?.me?.avatar || "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg"} />
+                  <Avatar
+                    url={
+                      data?.me?.avatar ||
+                      "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg"
+                    }
+                  />
                 </NavLink>
               </Icon>
             </IconsContainer>
