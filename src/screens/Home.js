@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import Photo from "../components/feed/Photo";
 import PageTitle from "../components/PageTitle";
 import { COMMENT_FRAGMENT, PHOTO_FRAGMENT } from "../fragments";
+import InitialFeed from "./InitialFeed";
 
 const FEED_QUERY = gql`
   query seeFeed {
@@ -35,9 +36,11 @@ function Home() {
     <div>
       <PageTitle title="Home" />
       <button onClick={logUserOut}>Log Out</button>
-      {data?.seeFeed?.map((photo) => (
-        <Photo key={photo.id} {...photo} />
-      ))}
+      {data.seeFeed.length === 0 ? (
+        <InitialFeed/>
+      ) : (
+        data?.seeFeed?.map((photo) => <Photo key={photo.id} {...photo} />)
+      )}
     </div>
   );
 }

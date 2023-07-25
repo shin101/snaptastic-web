@@ -3,7 +3,6 @@ import {
   faCameraRetro,
   faHome,
   faCompass,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useReactiveVar } from "@apollo/client";
@@ -15,6 +14,7 @@ import Avatar from "./Avatar";
 
 const SHeader = styled.header`
   width: 100%;
+  border: none;
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
   background-color: ${(props) => props.theme.bgColor};
   padding: 18px 0px;
@@ -22,9 +22,8 @@ const SHeader = styled.header`
   align-items: center;
   justify-content: center;
   position: fixed;
-  top:0;
-  z-index:100;
-
+  top: 0;
+  z-index: 100;
 `;
 
 const Wrapper = styled.div`
