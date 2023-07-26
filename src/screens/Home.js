@@ -4,6 +4,8 @@ import Photo from "../components/feed/Photo";
 import PageTitle from "../components/PageTitle";
 import { COMMENT_FRAGMENT, PHOTO_FRAGMENT } from "../fragments";
 import InitialFeed from "./InitialFeed";
+import { useNavigate } from "react-router-dom";
+import routes from "./routes";
 
 const FEED_QUERY = gql`
   query seeFeed {
@@ -27,9 +29,14 @@ const FEED_QUERY = gql`
 
 function Home() {
   const { data, loading } = useQuery(FEED_QUERY);
+  const navigate = useNavigate();
 
   if (loading) {
     return <p>Loading...</p>;
+  }
+
+  if (!data) {
+    navigate(routes.home);
   }
 
   return (
@@ -37,7 +44,7 @@ function Home() {
       <PageTitle title="Home" />
       <button onClick={logUserOut}>Log Out</button>
       {data.seeFeed.length === 0 ? (
-        <InitialFeed/>
+        <InitialFeed />
       ) : (
         data?.seeFeed?.map((photo) => <Photo key={photo.id} {...photo} />)
       )}

@@ -52,7 +52,7 @@ function SignUp() {
     // getValues will make so that the moment you crete an account & redirected to login page, login page is prefilled with your username & password info
     const { username, password } = getValues();
     const {
-      createAccount: { ok, error },
+      createAccount: { ok },
     } = data;
     if (!ok) {
       return;
