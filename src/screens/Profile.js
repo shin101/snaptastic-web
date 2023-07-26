@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { FatText } from "../components/shared";
 import Button from "../components/auth/Button";
 import PageTitle from "../components/PageTitle";
+import { useUser, ME_QUERY } from "../hooks/useUser";
 
 const FOLLOW_USER_MUTATION = gql`
   mutation followUser($username: String!) {
@@ -129,13 +130,32 @@ const defaultImage =
 const ProfileButton = styled(Button).attrs({ as: "span" })`
   margin-left: 10px;
   margin-top: 0px;
+  cursor: pointer;
 `;
 
 function Profile() {
   const { username } = useParams();
+  const { data: userData } = useUser();
   const { data, loading, error } = useQuery(SEE_PROFILE_QUERY, {
-    variables: { username },
+    variables: { username: userData.me.username },
   });
+
+  // primary purpose of using refetchQueries is to update the UI after performing mutations w graphQL
+  const [unfollowUser] = useMutation(UNFOLLOW_USER_MUTATION, {
+    variables: { username },
+    refetchQueries: [
+      { query: ME_QUERY },
+   
+    ],
+  });
+  const [followUser] = useMutation(FOLLOW_USER_MUTATION, {
+    variables: { username },
+    refetchQueries: [
+      { query: ME_QUERY },
+
+    ],
+  });
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -143,16 +163,15 @@ function Profile() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
   const getButton = (seeProfile) => {
     const { isMe, isFollowing } = seeProfile;
     if (isMe) {
       return <ProfileButton>Edit Profile</ProfileButton>;
     }
     if (isFollowing) {
-      return <ProfileButton>Unfollow</ProfileButton>;
+      return <ProfileButton onClick={unfollowUser}>Unfollow</ProfileButton>;
     } else {
-      return <ProfileButton>Follow</ProfileButton>;
+      return <ProfileButton onClick={followUser}>Follow</ProfileButton>;
     }
   };
 
