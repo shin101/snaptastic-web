@@ -22,7 +22,9 @@ const CommentCaption = styled.span`
 function Comment({ author, payload }) {
   return (
     <CommentContainer>
-      <FatText>{author}</FatText>
+      <NavLink to={`/users/${author}`}>
+        <FatText>{author}</FatText>
+      </NavLink>
       <CommentCaption>
         {payload?.split(" ").map((word, index) =>
           /#[\w]+/.test(word) ? (

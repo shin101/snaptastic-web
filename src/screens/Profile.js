@@ -143,17 +143,11 @@ function Profile() {
   // primary purpose of using refetchQueries is to update the UI after performing mutations w graphQL
   const [unfollowUser] = useMutation(UNFOLLOW_USER_MUTATION, {
     variables: { username },
-    refetchQueries: [
-      { query: ME_QUERY },
-   
-    ],
+
   });
   const [followUser] = useMutation(FOLLOW_USER_MUTATION, {
     variables: { username },
-    refetchQueries: [
-      { query: ME_QUERY },
-
-    ],
+ 
   });
 
   if (loading) {

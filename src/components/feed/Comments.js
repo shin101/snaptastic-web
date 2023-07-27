@@ -54,11 +54,26 @@ function Comments({ author, caption, commentNumber, comments, photoId }) {
         payload,
         user: { ...userData.me },
       };
+      const newCacheComment = cache.writeFragment({
+        data: newComment,
+        fragment: gql`
+          fragment BSName on Comment {
+            id
+            createdAt
+            isMine
+            payload
+            user {
+              username
+              avatar
+            }
+          }
+        `,
+      });
       cache.modify({
         id: `Photo:${photoId}`,
         fields: {
           comments(prev) {
-            return [...prev, newComment];
+            return [...prev, newCacheComment];
           },
           commentNumber(prev) {
             return prev + 1;
@@ -89,9 +104,7 @@ function Comments({ author, caption, commentNumber, comments, photoId }) {
 
   return (
     <CommentsContainer>
-      <NavLink to={`/users/${author}`}>
-        <Comment author={author} payload={caption} />
-      </NavLink>
+      <Comment author={author} payload={caption} />
       {/* Fix caption formatting Later */}
 
       <CommentCount>
