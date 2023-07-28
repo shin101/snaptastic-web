@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useApolloClient, useMutation, useQuery } from "@apollo/client";
 import { faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams } from "react-router-dom";
@@ -136,18 +136,76 @@ const ProfileButton = styled(Button).attrs({ as: "span" })`
 function Profile() {
   const { username } = useParams();
   const { data: userData } = useUser();
+  const client = useApolloClient();
   const { data, loading, error } = useQuery(SEE_PROFILE_QUERY, {
-    variables: { username: userData.me.username },
+    variables: { username },
   });
 
-  // primary purpose of using refetchQueries is to update the UI after performing mutations w graphQL
+  const unfollowUserUpdate = (cache, result) => {
+    const {
+      data: {
+        unfollowUser: { ok },
+      },
+    } = result;
+    if (!ok) {
+      return;
+    }
+
+    const { seeProfile } = cache.readQuery({
+      query: SEE_PROFILE_QUERY,
+      variables: { username },
+    });
+    if (seeProfile) {
+      cache.writeQuery({
+        query: SEE_PROFILE_QUERY,
+        variables: { username },
+        data: {
+          seeProfile: {
+            ...seeProfile,
+            isFollowing: false,
+            totalFollowers: seeProfile.totalFollowers - 1,
+          },
+        },
+      });
+    }
+  };
+
   const [unfollowUser] = useMutation(UNFOLLOW_USER_MUTATION, {
     variables: { username },
-
+    update: unfollowUserUpdate,
   });
+
+  const followUserUpdate = (cache, result) => {
+    const {
+      data: {
+        followUser: { ok },
+      },
+    } = result;
+    if (!ok) {
+      return;
+    }
+
+    const { seeProfile } = cache.readQuery({
+      query: SEE_PROFILE_QUERY,
+      variables: { username },
+    });
+    if (seeProfile) {
+      cache.writeQuery({
+        query: SEE_PROFILE_QUERY,
+        variables: { username },
+        data: {
+          seeProfile: {
+            ...seeProfile,
+            isFollowing: true,
+            totalFollowers: seeProfile.totalFollowers + 1,
+          },
+        },
+      });
+    }
+  };
   const [followUser] = useMutation(FOLLOW_USER_MUTATION, {
     variables: { username },
- 
+    update: followUserUpdate,
   });
 
   if (loading) {

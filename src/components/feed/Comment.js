@@ -32,7 +32,7 @@ function Comment({ id, photoId, isMine, author, payload }) {
   const updateDeleteComment = (cache, result) => {
     const {
       data: {
-        deleteComment: { ok, error },
+        deleteComment: { ok },
       },
     } = result;
     if (ok) {
