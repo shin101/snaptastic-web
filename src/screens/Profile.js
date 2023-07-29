@@ -168,6 +168,15 @@ function Profile() {
         },
       });
     }
+    const { me } = userData;
+    cache.modify({
+      id: `User:${me.username}`,
+      fields: {
+        totalFollowing(prev) {
+          return prev - 1;
+        },
+      },
+    });
   };
 
   const [unfollowUser] = useMutation(UNFOLLOW_USER_MUTATION, {
@@ -202,6 +211,16 @@ function Profile() {
         },
       });
     }
+
+    const { me } = userData;
+    cache.modify({
+      id: `User:${me.username}`,
+      fields: {
+        totalFollowing(prev) {
+          return prev + 1;
+        },
+      },
+    });
   };
   const [followUser] = useMutation(FOLLOW_USER_MUTATION, {
     variables: { username },
