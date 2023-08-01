@@ -16,6 +16,7 @@ import FormError from "../components/auth/FormError";
 import { gql, useMutation } from "@apollo/client";
 import { logUserIn } from "../apollo";
 import { useLocation } from "react-router-dom";
+import AppDownload from "../components/AppDownload";
 
 const FacebookLogin = styled.div`
   color: #385285;
@@ -27,7 +28,7 @@ const FacebookLogin = styled.div`
 
 const SnaptasticText = styled(FatLink)`
   font-size: 16px;
-  text-align;: center;
+  text-align: center;
   margin-top: 10px;
 `;
 
@@ -147,6 +148,7 @@ function Login() {
         </FacebookLogin>
       </FormBox>
       <BottomBox cta="Not a member?" linkText="Sign up" link={routes.signUp} />
+      <AppDownload />
     </AuthLayout>
   );
 }

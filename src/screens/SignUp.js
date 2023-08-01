@@ -12,6 +12,7 @@ import PageTitle from "../components/PageTitle";
 import { useForm } from "react-hook-form";
 import { gql, useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
+import AppDownload from "../components/AppDownload";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -121,6 +122,7 @@ function SignUp() {
         </form>
       </FormBox>
       <BottomBox cta="Have an account?" linkText="Log in" link={routes.home} />
+      <AppDownload />
     </AuthLayout>
   );
 }

@@ -3,10 +3,11 @@ import {
   faCameraRetro,
   faHome,
   faCompass,
+  faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useReactiveVar } from "@apollo/client";
-import { isLoggedInVar } from "../apollo";
+import { isLoggedInVar, logUserOut } from "../apollo";
 import { NavLink } from "react-router-dom";
 import routes from "../screens/routes";
 import { useUser } from "../hooks/useUser";
@@ -82,6 +83,14 @@ export const Header = () => {
                     }
                   />
                 </NavLink>
+              </Icon>
+              <Icon>
+                <FontAwesomeIcon
+                  icon={faSignOut}
+                  size="lg"
+                  onClick={logUserOut}
+                  cursor={"pointer"}
+                />
               </Icon>
             </IconsContainer>
           ) : (

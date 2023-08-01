@@ -1,4 +1,3 @@
-import { logUserOut } from "../../src/apollo";
 import { gql, useQuery } from "@apollo/client";
 import Photo from "../components/feed/Photo";
 import PageTitle from "../components/PageTitle";
@@ -42,7 +41,7 @@ function Home() {
   return (
     <div>
       <PageTitle title="Home" />
-      <button onClick={logUserOut}>Log Out</button>
+
       {data.seeFeed.length === 0 ? (
         <InitialFeed />
       ) : (
