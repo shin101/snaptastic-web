@@ -146,6 +146,7 @@ function Login() {
           <FontAwesomeIcon icon={faFacebookSquare} />
           <span>Log in with Facebook</span>
         </FacebookLogin>
+
       </FormBox>
       <BottomBox cta="Not a member?" linkText="Sign up" link={routes.signUp} />
       <AppDownload />
