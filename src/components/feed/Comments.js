@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Comment from "./Comment";
-import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { gql, useMutation } from "@apollo/client";
 import { useUser } from "../../hooks/useUser";

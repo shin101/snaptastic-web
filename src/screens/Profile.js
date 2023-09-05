@@ -1,7 +1,7 @@
 import { gql, useApolloClient, useMutation, useQuery } from "@apollo/client";
 import { faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { PHOTO_FRAGMENT } from "../fragments";
 import styled from "styled-components";
 import { FatText } from "../components/shared";
@@ -237,7 +237,11 @@ function Profile() {
   const getButton = (seeProfile) => {
     const { isMe, isFollowing } = seeProfile;
     if (isMe) {
-      return <ProfileButton>Edit Profile</ProfileButton>;
+      return (
+        <ProfileButton>
+          <NavLink to="/edit-profile">Edit Profile</NavLink>
+        </ProfileButton>
+      );
     }
     if (isFollowing) {
       return <ProfileButton onClick={unfollowUser}>Unfollow</ProfileButton>;

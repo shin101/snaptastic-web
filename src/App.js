@@ -14,6 +14,7 @@ import React, { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./screens/Profile";
+import EditProfile from "./screens/EditProfile";
 
 function App() {
   // use header (apollo useReactiveVar) instead of passing down isLoggedIn props per page
@@ -50,10 +51,26 @@ function App() {
                   }
                 />
                 <Route exact path="/login" element={<Login />} />
+                <Route
+                  exact
+                  path="/edit-profile"
+                  element={
+                    <Layout>
+                      <EditProfile />
+                    </Layout>
+                  }
+                />
                 {!isLoggedIn && (
                   <Route exact path="/sign-up" element={<SignUp />} />
                 )}
-                <Route path={`/users/:username`} element={<Layout><Profile/></Layout>} />
+                <Route
+                  path={`/users/:username`}
+                  element={
+                    <Layout>
+                      <Profile />
+                    </Layout>
+                  }
+                />
                 <Route exact path="*" element={<NotFound />} />
                 {/* Alternatively, useRoute path="*" element={<Navigate to="/" />} /> */}
               </Routes>

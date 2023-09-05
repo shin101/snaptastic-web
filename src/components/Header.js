@@ -84,14 +84,16 @@ export const Header = () => {
                   />
                 </NavLink>
               </Icon>
-              <Icon>
-                <FontAwesomeIcon
-                  icon={faSignOut}
-                  size="lg"
-                  onClick={logUserOut}
-                  cursor={"pointer"}
-                />
-              </Icon>
+              <NavLink to={routes.home}>
+                <Icon>
+                  <FontAwesomeIcon
+                    icon={faSignOut}
+                    size="lg"
+                    onClick={logUserOut}
+                    cursor={"pointer"}
+                  />
+                </Icon>
+              </NavLink>
             </IconsContainer>
           ) : (
             <NavLink to={routes.home}>
