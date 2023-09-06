@@ -1,5 +1,10 @@
 import styled from "styled-components";
 import {BaseBox} from "../shared";
+import React, { ReactNode } from "react";
+
+interface FormBoxProps {
+  children: ReactNode;
+}
 
 const Container = styled(BaseBox)`
   display: flex;
@@ -18,7 +23,7 @@ const Container = styled(BaseBox)`
   }
 `;
 
-function FormBox({children}){
+function FormBox({children} : FormBoxProps){
   return (
     <Container> {children} </Container>
   )
