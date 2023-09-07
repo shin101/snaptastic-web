@@ -1,14 +1,22 @@
-![Snaptastic Logo](public/images/logo-black.png)
+<div style="text-align: center;">
+  <img src="public/images/logo-black.png" alt="Snaptastic Logo" width="250" height="30" />
+</div><br/>
+
 Social media app built with React, React Native, TypeScript, GraphQL, Apollo, and PostgreSQL
-
-
 
 # Project Overview
 ## Snaptastic Web
 Demo of Login page along with dark mode feature
-<img src="public/images/login.gif" alt="Login Demo" width="200" height="250" />
+<div style="text-align: center;">
+<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login.gif?raw=true" alt="Login Demo" width="200" height="250" />
+</div>
+
 ## Mobile App
-Will be updated soon
+Demo of sign up & log in page
+<div style="text-align: center;">
+<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login-app.gif?raw=true" alt="Login Demo" width="200" height="250" />
+</div>
+
 ## Features
 #### 💁🏼‍♀️✨ User 
 - Sign up

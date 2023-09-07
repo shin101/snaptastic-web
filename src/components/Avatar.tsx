@@ -1,6 +1,16 @@
 import styled from "styled-components";
+import React from "react";
 
-const SAvatar = styled.div`
+interface SAvatarProps {
+  lg?: boolean;
+}
+
+interface AvatarProps {
+  url?: string;
+  lg?: boolean;
+}
+
+const SAvatar = styled.div<SAvatarProps>`
   width: ${(props) => (props.lg ? "30px" : "25px")};
   height: ${(props) => (props.lg ? "30px" : "25px")};
   border-radius: 50%;
@@ -13,7 +23,7 @@ const Img = styled.img`
   max-width: 100%;
 `;
 
-const Avatar = ({ url = "", lg = false }) => {
+const Avatar = ({ url = "", lg = false }: AvatarProps) => {
   return (
     <SAvatar lg={lg}>
       {url !== "" ? <Img src={url} alt="avatar" /> : null}
