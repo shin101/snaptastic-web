@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const Container = styled.div`
   margin-top: 20px;
@@ -23,10 +24,17 @@ const AppDownload = () => {
     <Container>
       <h1>Download Our App (coming soon)</h1>
       <BadgeContainer>
-        <img src="/images/app-store-badge.png" alt="download on app store"  width="150px" height="50px" />
+        <img
+          src="/images/app-store-badge.png"
+          alt="download on app store"
+          width="150px"
+          height="50px"
+        />
         <img
           src="/images/google-play-badge.png"
-          alt="download on google play" width="150px" height="50px"
+          alt="download on google play"
+          width="150px"
+          height="50px"
         />
       </BadgeContainer>
     </Container>
