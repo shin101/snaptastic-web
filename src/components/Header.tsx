@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import routes from "../screens/routes";
 import { useUser } from "../hooks/useUser";
 import Avatar from "./Avatar";
+import React from "react";
 
 const SHeader = styled.header`
   width: 100%;

@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-  <img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/logo-black.png?raw=true" alt="Snaptastic Logo" />
+  <img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/logo-black.png?raw=true" alt="Snaptastic Logo" width="250" height="30" />
 </div><br/>
 
 Social media app built with React, React Native, TypeScript, GraphQL, Apollo, and PostgreSQL
@@ -11,7 +11,7 @@ Social media app built with React, React Native, TypeScript, GraphQL, Apollo, an
 Demo of Login page along with dark mode feature
 
 <div style="text-align: center;">
-<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login.gif?raw=true" alt="Login Demo" width="400" height="450" />
+<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login.gif?raw=true" alt="Login Demo" />
 </div>
 
 ## Mobile App
@@ -19,7 +19,7 @@ Demo of Login page along with dark mode feature
 Demo of sign up & log in page
 
 <div style="text-align: center;">
-<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login-app.gif?raw=true" alt="Login Demo" width="390" height="480" />
+<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login-app.gif?raw=true" alt="Login Demo"  />
 </div>
 
 ## Features
