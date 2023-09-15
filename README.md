@@ -13,7 +13,7 @@ Social media app built with React, React Native, TypeScript, GraphQL, Apollo, an
 
 ## Mobile App
 
-<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/app.gif?raw=true" alt="app demo"  />
+<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/mobile.gif?raw=true" alt="app demo"  />
 
 
 ## Features
