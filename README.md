@@ -8,13 +8,14 @@ Social media app built with React, React Native, TypeScript, GraphQL, Apollo, an
 
 ## Snaptastic Web
 
-Demo of Login page along with dark mode feature
+**Login page + dark mode feature**
 
 <div style="text-align: center;">
 <img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login.gif?raw=true" alt="Login Demo" />
 </div>
 
-Feed
+**Feed**
+
 <img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Feed.gif?raw=true" alt="Login Demo" />
 
 ## Mobile App
