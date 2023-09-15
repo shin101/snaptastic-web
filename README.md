@@ -20,10 +20,16 @@ Social media app built with React, React Native, TypeScript, GraphQL, Apollo, an
 
 ## Mobile App
 
-Demo of sign up & log in page
+**Demo of sign up & log in page**
 
 <div style="text-align: center;">
 <img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login-app.gif?raw=true" alt="Login Demo"  />
+</div>
+
+**Feed**
+
+<div style="text-align: center;">
+<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Feed-App.gif?raw=true" alt="Login Demo"  />
 </div>
 
 ## Features
