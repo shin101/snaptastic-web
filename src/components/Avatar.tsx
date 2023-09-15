@@ -20,7 +20,9 @@ const SAvatar = styled.div<SAvatarProps>`
 `;
 
 const Img = styled.img`
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Avatar = ({ url = "", lg = false }: AvatarProps) => {

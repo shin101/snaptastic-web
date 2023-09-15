@@ -14,6 +14,9 @@ Demo of Login page along with dark mode feature
 <img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Login.gif?raw=true" alt="Login Demo" />
 </div>
 
+Feed
+<img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/Feed.gif?raw=true" alt="Login Demo" />
+
 ## Mobile App
 
 Demo of sign up & log in page

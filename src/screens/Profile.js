@@ -131,6 +131,7 @@ const ProfileButton = styled(Button).attrs({ as: "span" })`
   margin-left: 10px;
   margin-top: 0px;
   cursor: pointer;
+  width: 100px;
 `;
 
 function Profile() {
