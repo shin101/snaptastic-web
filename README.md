@@ -61,12 +61,12 @@ Social media app built with React, React Native, TypeScript, GraphQL, Apollo, an
 
 ### Front-end
 
-- `React`
-- `Typescript`
-- `NextJS (In progress)`
-- `Apollo Client`
-- `GraphQL`
-- `Styled Components`
+-React
+-Typescript
+-NextJS (In progress)
+-Apollo Client
+-GraphQL
+-Styled Components
 
 ### Backend
 

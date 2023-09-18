@@ -18,8 +18,6 @@ function InitialFeed() {
       <SuggestedText>
         Check out some of our most followed influencers :{" "}
       </SuggestedText>
-      (Content not loading below? Might be because my DB has reached its limit
-      for this month..)
     </>
   );
 }
