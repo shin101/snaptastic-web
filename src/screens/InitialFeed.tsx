@@ -2,13 +2,15 @@ import styled from "styled-components";
 import React from "react";
 
 const FeedText = styled.div`
+  margin-top: 160px;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
 `;
 const SuggestedText = styled.div`
   margin-top: 20px;
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;
+  margin-bottom: 70px;
 `;
 
 function InitialFeed() {
@@ -16,8 +18,9 @@ function InitialFeed() {
     <>
       <FeedText>Your feed is empty!</FeedText>
       <SuggestedText>
-        Check out some of our most followed influencers :{" "}
+        Start following users or check out some of our trending posts :{" "}
       </SuggestedText>
+
     </>
   );
 }

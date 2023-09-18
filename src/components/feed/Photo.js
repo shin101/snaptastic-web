@@ -23,6 +23,12 @@ const TOGGLE_LIKE_MUTATION = gql`
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const PhotoContainer = styled.div`
   background-color: white;
   border: 1px solid ${(props) => props.theme.borderColor};
@@ -90,7 +96,7 @@ function Photo({
     if (ok) {
       const photoId = `Photo:${id}`;
       cache.modify({
-        id:photoId,
+        id: photoId,
         fields: {
           isLiked(prev) {
             return !prev;
@@ -112,53 +118,55 @@ function Photo({
   });
 
   return (
-    <PhotoContainer key={id}>
-      <PhotoHeader>
-        <NavLink to={`/users/${user.username}`}>
-          <Avatar
-            lg
-            url={
-              user.avatar ||
-              "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg"
-            }
+    <Container>
+      <PhotoContainer key={id}>
+        <PhotoHeader>
+          <NavLink to={`/users/${user.username}`}>
+            <Avatar
+              lg
+              url={
+                user.avatar ||
+                "https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg"
+              }
+            />
+          </NavLink>
+          <NavLink to={`/users/${user.username}`}>
+            <Username>{user.username}</Username>
+          </NavLink>
+        </PhotoHeader>
+        <PhotoFile src={file} alt="pic" />
+        <PhotoData>
+          <PhotoActions>
+            <div>
+              <PhotoAction onClick={toggleLikeMutation}>
+                <FontAwesomeIcon
+                  size={"2x"}
+                  style={{ color: isLiked ? "tomato" : "inherit" }}
+                  icon={isLiked ? SolidHeart : faHeart}
+                />
+              </PhotoAction>
+              <PhotoAction>
+                <FontAwesomeIcon size={"2x"} icon={faComment} />
+              </PhotoAction>
+              <PhotoAction>
+                <FontAwesomeIcon size={"2x"} icon={faPaperPlane} />
+              </PhotoAction>
+            </div>
+            <div>
+              <FontAwesomeIcon size={"2x"} icon={faBookmark} />
+            </div>
+          </PhotoActions>
+          <Likes>{likes === 1 ? "1 like" : `${likes} likes`}</Likes>
+          <Comments
+            author={user.username}
+            caption={caption}
+            commentNumber={commentNumber}
+            comments={comments}
+            photoId={id}
           />
-        </NavLink>
-        <NavLink to={`/users/${user.username}`}>
-          <Username>{user.username}</Username>
-        </NavLink>
-      </PhotoHeader>
-      <PhotoFile src={file} alt="pic" />
-      <PhotoData>
-        <PhotoActions>
-          <div>
-            <PhotoAction onClick={toggleLikeMutation}>
-              <FontAwesomeIcon
-                size={"2x"}
-                style={{ color: isLiked ? "tomato" : "inherit" }}
-                icon={isLiked ? SolidHeart : faHeart}
-              />
-            </PhotoAction>
-            <PhotoAction>
-              <FontAwesomeIcon size={"2x"} icon={faComment} />
-            </PhotoAction>
-            <PhotoAction>
-              <FontAwesomeIcon size={"2x"} icon={faPaperPlane} />
-            </PhotoAction>
-          </div>
-          <div>
-            <FontAwesomeIcon size={"2x"} icon={faBookmark} />
-          </div>
-        </PhotoActions>
-        <Likes>{likes === 1 ? "1 like" : `${likes} likes`}</Likes>
-        <Comments
-          author={user.username}
-          caption={caption}
-          commentNumber={commentNumber}
-          comments={comments}
-          photoId={id}
-        />
-      </PhotoData>
-    </PhotoContainer>
+        </PhotoData>
+      </PhotoContainer>
+    </Container>
   );
 }
 
