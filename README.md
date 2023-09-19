@@ -8,6 +8,7 @@ Social media app built with React, React Native, TypeScript, GraphQL, Apollo, an
 
 ## Snaptastic Web
 
+https://snaptastic-kendra.netlify.app/
 
 <img src="https://github.com/shin101/snaptastic-web/blob/main/public/images/web.gif?raw=true" alt="web demo" />
 
@@ -61,12 +62,12 @@ Social media app built with React, React Native, TypeScript, GraphQL, Apollo, an
 
 ### Front-end
 
--React
--Typescript
--NextJS (In progress)
--Apollo Client
--GraphQL
--Styled Components
+- React
+- Typescript
+- NextJS (In progress)
+- Apollo Client
+- GraphQL
+- Styled Components
 
 ### Backend
 

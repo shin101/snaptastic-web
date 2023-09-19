@@ -48,7 +48,7 @@ const Username = styled(FatText)`
 
 const PhotoFile = styled.img`
   min-width: 100%;
-  max-width: 615px;
+  max-width: 610px;
 `;
 
 const PhotoData = styled.div`
@@ -75,6 +75,29 @@ const Likes = styled(FatText)`
   margin-top: 15px;
   display: block;
 `;
+
+const FollowButton = styled.button`
+  margin-left: 8px;
+  color: #0095f6;
+  border: none;
+  cursor: pointer;
+  background: none;
+  padding: 0px;
+  font-weight: 600;
+`;
+
+const FOLLOW_USER_MUTATION = gql`
+  mutation followUser($username: String!) {
+    followUser(username: $username) {
+      ok
+    }
+  }
+`;
+
+const followUser = () => {
+  console.log('followed')
+}
+
 
 function Photo({
   id,
@@ -133,6 +156,10 @@ function Photo({
           <NavLink to={`/users/${user.username}`}>
             <Username>{user.username}</Username>
           </NavLink>
+
+          {true ? (
+            <FollowButton onClick={followUser}>Follow</FollowButton>
+          ) : null}
         </PhotoHeader>
         <PhotoFile src={file} alt="pic" />
         <PhotoData>

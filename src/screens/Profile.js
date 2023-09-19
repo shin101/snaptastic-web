@@ -137,7 +137,6 @@ const ProfileButton = styled(Button).attrs({ as: "span" })`
 function Profile() {
   const { username } = useParams();
   const { data: userData } = useUser();
-  const client = useApolloClient();
   const { data, loading, error } = useQuery(SEE_PROFILE_QUERY, {
     variables: { username },
   });

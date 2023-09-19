@@ -3,6 +3,8 @@ import { gql } from "@apollo/client";
 import PageTitle from "../components/PageTitle";
 import FormBox from "../components/auth/FormBox";
 import Button from "../components/auth/Button";
+import Input from "../components/auth/Input";
+import styled from "styled-components";
 
 const EditProfile_Mutation = gql`
   mutation editProfile(
@@ -29,20 +31,30 @@ const EditProfile_Mutation = gql`
   }
 `;
 
+const EditProfileContainer = styled.div`
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+`;
+
 const EditProfile = () => {
   return (
     <div>
       <PageTitle title="Edit Profile" />
-      <FormBox>
-        <input placeholder="First Name"></input>
-        <input placeholder="Last Name"></input>
-        <input placeholder="Username"></input>
-        <input placeholder="Email"></input>
-        <input placeholder="Password"></input>
-        <input placeholder="Avatar"></input>
-        <input placeholder="Bio"></input>
-      </FormBox>
-      <Button type="submit" disabled={true} />
+      <EditProfileContainer>
+        <FormBox>
+          <Input placeholder="First Name" />
+          <Input placeholder="Last Name" />
+          <Input placeholder="Username" />
+          <Input placeholder="Email" />
+          <Input placeholder="Password" />
+          <Input placeholder="Avatar" />
+          <Input placeholder="Bio" />
+          <Button type="submit" disabled={true} />
+        </FormBox>
+      </EditProfileContainer>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { darkModeVar, disableDarkMode, enableDarkMode } from "../../apollo";
 import { useReactiveVar } from "@apollo/client";
+import React from "react";
 
 const Container = styled.div`
   display: flex;
