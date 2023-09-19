@@ -39,7 +39,7 @@ const EditProfileContainer = styled.div`
   align-items: center;
 `;
 
-const EditProfile = () => {
+const EditProfile: React.FC = () => {
   return (
     <div>
       <PageTitle title="Edit Profile" />

@@ -26,7 +26,11 @@ const DarkModeBtn = styled.span`
   cursor: pointer;
 `;
 
-function AuthLayout({ children }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+function AuthLayout({ children }: Props) {
   const darkMode = useReactiveVar(darkModeVar);
 
   return (

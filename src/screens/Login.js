@@ -17,6 +17,8 @@ import { gql, useMutation } from "@apollo/client";
 import { logUserIn } from "../apollo";
 import { useLocation } from "react-router-dom";
 import AppDownload from "../components/AppDownload";
+import React from "react";
+
 
 const FacebookLogin = styled.div`
   color: #385285;

@@ -5,6 +5,14 @@ import { FatText } from "../shared";
 import { NavLink } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 
+interface CommentProps {
+  id: number;
+  photoId: number;
+  isMine: boolean;
+  author: string;
+  payload: string;
+}
+
 const DELETE_COMMENT_MUTATION = gql`
   mutation deleteComment($id: Int!) {
     deleteComment(id: $id) {
@@ -28,8 +36,14 @@ const CommentCaption = styled.span`
   }
 `;
 
-function Comment({ id, photoId, isMine, author, payload }) {
-  const updateDeleteComment = (cache, result) => {
+function Comment({ id, photoId, isMine, author, payload }: CommentProps) {
+  const updateDeleteComment = (
+    cache: any,
+    result: { data?: { deleteComment: { ok: boolean } } | null }
+  ) => {
+    if (!result.data) {
+      return;
+    }
     const {
       data: {
         deleteComment: { ok },
@@ -40,7 +54,7 @@ function Comment({ id, photoId, isMine, author, payload }) {
       cache.modify({
         id: `Photo:${photoId}`,
         fields: {
-          commentNumber(prev) {
+          commentNumber(prev: number) {
             return prev - 1;
           },
         },
@@ -48,10 +62,10 @@ function Comment({ id, photoId, isMine, author, payload }) {
     }
   };
   const [deleteCommentMutation] = useMutation(DELETE_COMMENT_MUTATION, {
+    update: updateDeleteComment,
     variables: {
       id,
     },
-    update: updateDeleteComment,
   });
   const onDeleteClick = () => {
     deleteCommentMutation();
