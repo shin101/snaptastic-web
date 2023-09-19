@@ -1,19 +1,19 @@
 import React from "react";
-import routes from "./routes";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+// import routes from "./routes";
+// import { NavLink } from "react-router-dom";
+// import styled from "styled-components";
 
 function NotFound() {
-  const NormalText = styled.text``;
-  const NameButton = styled.button`
-    background-color: rgb(201, 96, 93);
-    border-radius: 10%;
-    border: none;
-    color: white;
-    width: 60px;
-    height: 40px;
-    font-weight: 600;
-  `;
+  // const NormalText = styled.text``;
+  // const NameButton = styled.button`
+  //   background-color: rgb(201, 96, 93);
+  //   border-radius: 10%;
+  //   border: none;
+  //   color: white;
+  //   width: 60px;
+  //   height: 40px;
+  //   font-weight: 600;
+  // `;
 
   return (
     <>

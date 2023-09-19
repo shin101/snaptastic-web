@@ -13,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { gql, useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import AppDownload from "../components/AppDownload";
+import React from "react";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -47,9 +48,17 @@ const CREATE_ACCOUNT_MUTATION = gql`
   }
 `;
 
+interface SignUpData {
+  firstName: string;
+  lastName?: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
 function SignUp() {
   const navigate = useNavigate();
-  const onCompleted = (data) => {
+  const onCompleted = (data: { createAccount: { ok: boolean } }) => {
     // getValues will make so that the moment you crete an account & redirected to login page, login page is prefilled with your username & password info
     const { username, password } = getValues();
     const {
@@ -69,10 +78,10 @@ function SignUp() {
   const [createAccount, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
     onCompleted,
   });
-  const { register, handleSubmit, errors, formState, getValues } = useForm({
+  const { register, handleSubmit, formState, getValues } = useForm<SignUpData>({
     mode: "onChange",
   });
-  const onSubmitValid = (data) => {
+  const onSubmitValid = (data: SignUpData) => {
     if (loading) {
       return;
     }
