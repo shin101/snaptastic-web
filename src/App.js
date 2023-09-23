@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./screens/Profile";
 import EditProfile from "./screens/EditProfile";
+import Recs from "./screens/Recs";
 
 function App() {
   // use header (apollo useReactiveVar) instead of passing down isLoggedIn props per page
@@ -68,6 +69,16 @@ function App() {
                   element={
                     <Layout>
                       <Profile />
+                    </Layout>
+                  }
+                />
+
+                <Route
+                  exact
+                  path="/recs"
+                  element={
+                    <Layout>
+                      <Recs />
                     </Layout>
                   }
                 />

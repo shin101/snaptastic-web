@@ -98,7 +98,6 @@ const followUser = () => {
   console.log('followed')
 }
 
-
 function Photo({
   id,
   user,
